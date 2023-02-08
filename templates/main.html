@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="color-info-placeholder" class="mt-2"></div>
+<div class="row mt-5 gx-5  bg-light p-4">
+    <div class="col" id="controls">
+        <form action="{{ url_for('qr')}}" method="post">
+            <div class="form-group">
+                <div id="text-container">
+                    <label for="text_input">Enter text to encode:</label>
+                    <textarea type="text" class="form-control" id="text_input" name="text_input"
+                        placeholder="Text to encode"></textarea>
+                </div>
+    
+                <div id="style-container" class="mt-3 ">
+                    <label for="btnradio">Pick a style:</label>
+                    <div class="btn-group w-100 bg-white" id="style-radio" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="square" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="square">Square</label>
+    
+                        <input type="radio" class="btn-check" name="btnradio" id="rounded" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="rounded">Rounded</label>
+    
+                        <input type="radio" class="btn-check" name="btnradio" id="circle" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="circle">Circle</label>
+    
+                        <input type="radio" class="btn-check" name="btnradio" id="gapped" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="gapped">Gap</label>
+                    </div>
+                </div>
+                <div id="cp-grid" class="mt-3">
+                    <div id="fg-label"><label>Foreground color:</label></div>
+                    <div id="fg-pick"><input role="button" type="color" value="#000000" class="color-picker" id="fg-picker" /></div>
+                    <div id="bg-label"><label>Background color:</label></div>
+                    <div id="bg-pick"><input role="button" type="color" value="#ffffff" class="color-picker" id="bg-picker" /></div>
+                    <div id="color-swap-container">
+                        <button type="button" class="btn btn-primary btn-xl " id="color-swap-btn">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-xl mt-3" id="submit_btn">Convert to QR!</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col" id="qr_wrapper">
+        <p class="fs-2">Your QR code:</p>
+        <img id="qr_code_img" class="w-75" src="data:image/png;base64, {{ qr_image }}">
+        <button type="button" class="btn btn-secondary d-block mt-4 w-75" id="download-btn"><i class="bi bi-download"></i> Download QR code </button>
+    </div>
+</div>
+
+
+
+<script>
+    const url = "{{ url_for('qr') }}";
+
+</script>
+<script type="module" src="{{ url_for('static', filename='color_contrast.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+
+{% endblock %}
