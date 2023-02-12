@@ -1,10 +1,12 @@
 import contrast from "./color_contrast.js";
 import contrastWarning from "./contrast_warning.js";
+import spinner from "./loading_spinner.js";
 
 const btn = document.getElementById('submit_btn');
 const download_btn = document.getElementById('download-btn');
 
 btn.addEventListener('click', async (e) => {
+  spinner.showSpinner();
   e.preventDefault();
   const text = document.getElementById('text_input').value;
   const style = Array.from(document.querySelectorAll('.btn-check')).filter(e => { return e.checked; })[0].id;
@@ -24,6 +26,7 @@ btn.addEventListener('click', async (e) => {
 
   const content = await rawResponse.json();
   show_qr(content.qr);
+  spinner.hideSpinner();
 
 });
 

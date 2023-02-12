@@ -29,10 +29,6 @@
     align-items: center;
 }
 
-#content{
-    width: 50%;
-}
-
 #fg-label{
     grid-column: 1;
     grid-row: 1;
@@ -60,4 +56,20 @@
 
 #controls{
     border-right: 1px dashed grey;
+}
+
+#qr-img-wrapper{
+    position: relative;
+}
+
+.qr-loading-spinner{
+    position: absolute; 
+    background: none;
+
+    /* center overlay text */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    inset: 0;
 }

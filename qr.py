@@ -22,8 +22,10 @@ BLACK = "#000000"
 
 def generateQR_b64(text, style = None, fg = BLACK, bg = WHITE):
     st = time.time()
+
     if not style or not style in MODES:
         style = "square"
+
     qr = qrcode.QRCode(
     version=None,
     error_correction=qrcode.constants.ERROR_CORRECT_L,
